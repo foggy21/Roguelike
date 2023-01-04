@@ -1,0 +1,20 @@
+{
+  "windowName": "Rougelike",
+  "windowWidth": 800,
+  "windowHeight": 600,
+
+  "spriteSize": 16,
+
+  "tileSetPath": "../res/tile_set.png",
+  "mapPath": "../res/map.txt",
+
+  "objects": {
+    "grass": ".",
+    "wall": "#",
+    "knight": "K",
+    "monster": "M",
+    "wizard": "W",
+    "heal": "+",
+    "sword": "!"
+  }
+}
