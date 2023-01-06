@@ -10,7 +10,7 @@ struct Position {
 };
 
 class Knight;
-class Monster;
+class MeleeMob;
 class Wizard;
 
 class GameObject {
@@ -28,7 +28,7 @@ public:
     // true - object can move to this point | false - can't
     virtual bool collide(GameObject& object) = 0;
     virtual bool collide(Knight& knight) = 0;
-    virtual bool collide(Monster& monster) = 0;
+    virtual bool collide(MeleeMob& mob) = 0;
     virtual bool collide(Wizard& magician) = 0;
 protected:
     Position position;

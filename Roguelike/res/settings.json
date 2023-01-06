@@ -1,14 +1,14 @@
 {
-  "windowName": "Rougelike",
-  "windowWidth": 800,
-  "windowHeight": 600,
+  "game": "Rougelike",
+  "width": 800,
+  "height": 600,
 
-  "spriteSize": 16,
+  "sizeOfSprites": 16,
 
-  "tileSetPath": "../res/tile_set.png",
-  "mapPath": "../res/map.txt",
+  "pathForTilemap": "../res/tile_set.png",
+  "pathForMap": "../res/map.txt",
 
-  "objects": {
+  "entities": {
     "grass": ".",
     "wall": "#",
     "knight": "K",

@@ -4,6 +4,7 @@
 #include <property_tree/ptree.hpp>
 #include <property_tree/json_parser.hpp>
 #include <property_tree/ptree_fwd.hpp>
+
 class Settings {
 public:
     static Settings& Instance() {
@@ -15,30 +16,25 @@ public:
         boost::property_tree::ptree root;
         boost::property_tree::read_json(filePath, root);
 
-        windowName = root.get<std::string>("windowName");
-        windowWidth = root.get<int>("windowWidth");
-        windowHeight = root.get<int>("windowHeight");
+        gameName = root.get<std::string>("game");
+        width = root.get<int>("width");
+        height = root.get<int>("height");
+        pathForMap = root.get<std::string>("pathForMap");
+        sizeOfSprites = root.get<int>("sizeOfSprites");
+        pathForTilemap = root.get<std::string>("pathForTilemap");
 
-        tileSetPath = root.get<std::string>("tileSetPath");
-        mapPath = root.get<std::string>("mapPath");
-        fontPath = root.get<std::string>("fontPath");
-        spriteSize = root.get<int>("spriteSize");
-
-        for (boost::property_tree::ptree::value_type& object : root.get_child("objects")) {
-            objects.insert(std::pair<std::string, char>(object.first, object.second.data()[0]));
+        for (boost::property_tree::ptree::value_type& object : root.get_child("entities")) {
+            entities.insert(std::pair<std::string, char>(object.first, object.second.data()[0]));
         }
     }
 
-    std::string windowName;
-    int windowWidth;
-    int windowHeight;
-
-    std::string tileSetPath;
-    std::string mapPath;
-    std::string fontPath;
-
-    int spriteSize;
-    std::map<std::string, char> objects;
+    std::string gameName;
+    int width;
+    int height;
+    std::string pathForMap;
+    int sizeOfSprites;
+    std::string pathForTilemap;
+    std::map<std::string, char> entities;
 
 private:
     Settings() {}

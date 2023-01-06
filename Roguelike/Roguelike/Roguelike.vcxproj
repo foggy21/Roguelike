@@ -104,12 +104,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Foggy\Desktop\Projects\Rouglike\Roguelike\SFML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Foggy\Desktop\Projects\Rouglike\Roguelike\SFML\include;C:\Users\Foggy\Desktop\Projects\Rouglike\Roguelike\Roguelike\boost</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Foggy\Desktop\Projects\Rouglike\Roguelike\SFML\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Foggy\Desktop\Projects\Rouglike\Roguelike\SFML\lib;C:\Users\Foggy\Desktop\Projects\Rouglike\Roguelike\Roguelike\boost</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -130,7 +130,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Knight.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Knight.h" />
+    <ClInclude Include="Settings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
