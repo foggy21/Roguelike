@@ -1,5 +1,6 @@
 #pragma once
 #include "Thing.h"
+#include "Position.h"
 
 class HealthPotion : public Thing {
 public:

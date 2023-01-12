@@ -1,13 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "Position.h"
 #include <memory>
-
-struct Position {
-    int x, y;
-    friend const Position operator+(const Position& left, const Position& right);
-    friend bool operator==(const Position& left, const Position& right);
-    friend bool operator!=(const Position& left, const Position& right);
-};
 
 class Knight;
 class MeleeMob;
@@ -15,17 +9,16 @@ class Wizard;
 
 class GameObject {
 public:
-    GameObject(const Position& position, const std::shared_ptr<sf::Sprite> sprite,
-        const int& health, const int& damage);
-    void draw(sf::RenderWindow& window);
+    GameObject(const Position& position, const std::shared_ptr<sf::Sprite> sprite, const int& health, const int& damage);
+    void render(sf::RenderWindow& window); // It will need, when I display sprites.
     Position getPosition();
     int getHealth();
     int getDamage();
-    void hit(const int& damageSize);
-    void changeDamage(const int& incSize);
-    virtual void move(const Position& offset, std::vector<std::shared_ptr<GameObject>>& objects,
-        const std::vector<std::string> map) = 0;
-    // true - object can move to this point | false - can't
+    void hit(const int& damage);
+    void changeDamage(const int& newDamage); // When player will take sword, he changes damage.
+
+    // virtual methods.
+    virtual void move(const Position& pos, std::vector<std::shared_ptr<GameObject>>& objects, const std::vector<std::string> map) = 0;
     virtual bool collide(GameObject& object) = 0;
     virtual bool collide(Knight& knight) = 0;
     virtual bool collide(MeleeMob& mob) = 0;

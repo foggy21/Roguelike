@@ -190,15 +190,16 @@
 #endif
 
 #ifndef BOOST_JSON_UNREACHABLE
-# define BOOST_JSON_UNREACHABLE() static_cast<void>(0)
 # ifdef _MSC_VER
-#  undef BOOST_JSON_UNREACHABLE
 #  define BOOST_JSON_UNREACHABLE() __assume(0)
+# elif defined(__GNUC__) || defined(__clang__)
+#  define BOOST_JSON_UNREACHABLE() __builtin_unreachable()
 # elif defined(__has_builtin)
 #  if __has_builtin(__builtin_unreachable)
-#   undef BOOST_JSON_UNREACHABLE
 #   define BOOST_JSON_UNREACHABLE() __builtin_unreachable()
 #  endif
+# else
+#  define BOOST_JSON_UNREACHABLE() static_cast<void>(0)
 # endif
 #endif
 
@@ -247,6 +248,24 @@
 // themselves when building the library or including
 // src.hpp.
 #  define BOOST_JSON_STACK_BUFFER_SIZE 256
+# endif
+#endif
+
+
+#if ! defined(BOOST_JSON_BIG_ENDIAN) && ! defined(BOOST_JSON_LITTLE_ENDIAN)
+// Copied from Boost.Endian
+# if defined(__BYTE_ORDER__) && defined(__ORDER_LITTLE_ENDIAN__) && __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+#  define BOOST_JSON_LITTLE_ENDIAN
+# elif defined(__BYTE_ORDER__) && defined(__ORDER_BIG_ENDIAN__) && __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
+#  define BOOST_JSON_BIG_ENDIAN
+# elif defined(__LITTLE_ENDIAN__)
+#  define BOOST_JSON_LITTLE_ENDIAN
+# elif defined(__BIG_ENDIAN__)
+#  define BOOST_JSON_BIG_ENDIAN
+# elif defined(_MSC_VER) || defined(__i386__) || defined(__x86_64__)
+#  define BOOST_JSON_LITTLE_ENDIAN
+# else
+#  error The Boost.JSON library could not determine the endianness of this platform. Define either BOOST_JSON_BIG_ENDIAN or BOOST_JSON_LITTLE_ENDIAN.
 # endif
 #endif
 

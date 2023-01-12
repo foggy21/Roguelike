@@ -92,7 +92,7 @@ write_some(
         data, size, ec);
     if(ec)
         detail::throw_system_error(ec,
-            BOOST_JSON_SOURCE_POS);
+            BOOST_CURRENT_LOCATION);
     return n;
 }
 
@@ -107,8 +107,7 @@ write(
         data, size, ec);
     if(! ec && n < size)
     {
-        BOOST_STATIC_CONSTEXPR source_location loc = BOOST_JSON_SOURCE_POS;
-        BOOST_JSON_ASSIGN_ERROR_CODE(ec, error::extra_data, &loc);
+        BOOST_JSON_FAIL(ec, error::extra_data);
         p_.fail(ec);
     }
     return n;
@@ -138,7 +137,7 @@ write(
         data, size, ec);
     if(ec)
         detail::throw_system_error(ec,
-            BOOST_JSON_SOURCE_POS);
+            BOOST_CURRENT_LOCATION);
     return n;
 }
 
@@ -152,13 +151,12 @@ release()
         if(! p_.last_error())
         {
             error_code ec;
-            BOOST_STATIC_CONSTEXPR source_location loc = BOOST_JSON_SOURCE_POS;
-            BOOST_JSON_ASSIGN_ERROR_CODE(ec, error::incomplete, &loc);
+            BOOST_JSON_FAIL(ec, error::incomplete);
             p_.fail(ec);
         }
         detail::throw_system_error(
             p_.last_error(),
-            BOOST_JSON_SOURCE_POS);
+            BOOST_CURRENT_LOCATION);
     }
     return p_.handler().st.release();
 }

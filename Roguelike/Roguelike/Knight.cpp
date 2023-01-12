@@ -1,19 +1,24 @@
 #include "Knight.h"
+#include "MeleeMob.h"
+#include "Wizard.h"
 
 Knight::Knight(const Position& position, const std::shared_ptr<sf::Sprite> sprite, const int& health, const int& damage) : GameObject(position, sprite, health, damage) {}
 
-void Knight::move(const Position& offset, std::vector<std::shared_ptr<GameObject>>& objects, const std::vector<std::string> map)
+void Knight::move(const Position& pos, std::vector<std::shared_ptr<GameObject>>& entities, const std::vector<std::string> map)
 {
-    Position targetPosition = position + offset;
+    Position targetPosition = position + pos;
     bool collided = false;
 
-    for (int i = 0; i < objects.size(); ++i) {
-        if (targetPosition == objects[i]->getPosition())
-            if (!objects[i]->collide(*this)) {
+    //Check collide with different objects.
+    for (int i = 0; i < entities.size(); ++i) {
+        if (targetPosition == entities[i]->getPosition()) {
+            if (!entities[i]->collide(*this)) {
                 collided = true;
             }
+        }
     }
 
+    // Don't collide with object and targetPos - grass.
     if (!collided && map[targetPosition.y][targetPosition.x] == '.')
         position = targetPosition;
 }
@@ -27,8 +32,16 @@ bool Knight::collide(GameObject& object) {
     return object.collide(*this);
 }
 
-bool Knight::collide(Knight& knight) {
+bool Knight::collide(MeleeMob& mob) {
+    health -= mob.getDamage();
     return false;
 }
 
-// TODO: Hit Mob and Wizard
+bool Knight::collide(Wizard& wizard) {
+    health -= wizard.getDamage();
+    return false;
+}
+
+bool Knight::collide(Knight& knight) {
+    return false;
+}

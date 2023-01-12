@@ -1,9 +1,9 @@
 #pragma once
 #include <map>
 #include <string>
-#include <property_tree/ptree.hpp>
-#include <property_tree/json_parser.hpp>
-#include <property_tree/ptree_fwd.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/property_tree/ptree_fwd.hpp>
 
 class Settings {
 public:

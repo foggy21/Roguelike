@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Foggy\Desktop\Projects\Rouglike\Roguelike\SFML\include;C:\Users\Foggy\Desktop\Projects\Rouglike\Roguelike\Roguelike\boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Foggy\Desktop\Projects\Rouglike\Roguelike\SFML\include;C:\Users\Foggy\Desktop\Projects\Rouglike\Roguelike\Roguelike\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,14 +130,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Dagger.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="HealthPotion.cpp" />
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MeleeMob.cpp" />
+    <ClCompile Include="Thing.cpp" />
+    <ClCompile Include="Wizard.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dagger.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="HealthPotion.h" />
     <ClInclude Include="Knight.h" />
+    <ClInclude Include="MeleeMob.h" />
+    <ClInclude Include="Position.h" />
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="Thing.h" />
+    <ClInclude Include="Wizard.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

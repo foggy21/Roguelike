@@ -154,15 +154,13 @@ parse_number_token(
     if( ( b == e )
         || is_invalid_zero(b, e) )
     {
-        BOOST_STATIC_CONSTEXPR source_location loc = BOOST_JSON_SOURCE_POS;
-        BOOST_JSON_ASSIGN_ERROR_CODE(ec, error::token_not_number, &loc);
+        BOOST_JSON_FAIL(ec, error::token_not_number);
         return {};
     }
 
     if( is_past_the_end_token(b, e) )
     {
-        BOOST_STATIC_CONSTEXPR source_location loc = BOOST_JSON_SOURCE_POS;
-        BOOST_JSON_ASSIGN_ERROR_CODE(ec, error::past_the_end, &loc);
+        BOOST_JSON_FAIL(ec, error::past_the_end);
         return {};
     }
 
@@ -177,16 +175,14 @@ parse_number_token(
         unsigned d = c - '0';
         if( d > 9 )
         {
-            BOOST_STATIC_CONSTEXPR source_location loc = BOOST_JSON_SOURCE_POS;
-            BOOST_JSON_ASSIGN_ERROR_CODE(ec, error::token_not_number, &loc);
+            BOOST_JSON_FAIL(ec, error::token_not_number);
             return {};
         }
 
         std::size_t new_result = result * 10 + d;
         if( new_result < result )
         {
-            BOOST_STATIC_CONSTEXPR source_location loc = BOOST_JSON_SOURCE_POS;
-            BOOST_JSON_ASSIGN_ERROR_CODE(ec, error::token_overflow, &loc);
+            BOOST_JSON_FAIL(ec, error::token_overflow);
             return {};
         }
 
@@ -213,9 +209,7 @@ get_token(
         {
             if( ++b == e )
             {
-                BOOST_STATIC_CONSTEXPR source_location loc
-                    = BOOST_JSON_SOURCE_POS;
-                BOOST_JSON_ASSIGN_ERROR_CODE(ec, error::invalid_escape, &loc);
+                BOOST_JSON_FAIL(ec, error::invalid_escape);
                 break;
             }
 
@@ -226,9 +220,7 @@ get_token(
                 // valid escape sequence
                 continue;
             default: {
-                BOOST_STATIC_CONSTEXPR source_location loc
-                    = BOOST_JSON_SOURCE_POS;
-                BOOST_JSON_ASSIGN_ERROR_CODE(ec, error::invalid_escape, &loc);
+                BOOST_JSON_FAIL(ec, error::invalid_escape);
                 break;
             }
             }
@@ -255,20 +247,13 @@ if_contains_token(object const& obj, pointer_token token)
 } // namespace detail
 
 value const&
-value::at_pointer(string_view ptr) const
+value::at_pointer(string_view ptr) const&
 {
     error_code ec;
     auto const found = find_pointer(ptr, ec);
     if( !found )
-        detail::throw_system_error(ec, BOOST_JSON_SOURCE_POS);
+        detail::throw_system_error(ec, BOOST_CURRENT_LOCATION);
     return *found;
-}
-
-value&
-value::at_pointer(string_view ptr)
-{
-    value const& self = *this;
-    return const_cast<value&>(self.at_pointer(ptr));
 }
 
 value const*
@@ -283,8 +268,7 @@ value::find_pointer(string_view ptr, error_code& ec) const noexcept
     {
         if( *cur++ != '/' )
         {
-            BOOST_STATIC_CONSTEXPR source_location loc = BOOST_JSON_SOURCE_POS;
-            BOOST_JSON_ASSIGN_ERROR_CODE(ec, error::missing_slash, &loc);
+            BOOST_JSON_FAIL(ec, error::missing_slash);
             return nullptr;
         }
 
@@ -307,15 +291,13 @@ value::find_pointer(string_view ptr, error_code& ec) const noexcept
         }
         else
         {
-            BOOST_STATIC_CONSTEXPR source_location loc = BOOST_JSON_SOURCE_POS;
-            BOOST_JSON_ASSIGN_ERROR_CODE(ec, error::value_is_scalar, &loc);
+            BOOST_JSON_FAIL(ec, error::value_is_scalar);
             return nullptr;
         }
 
         if( !result )
         {
-            BOOST_STATIC_CONSTEXPR source_location loc = BOOST_JSON_SOURCE_POS;
-            BOOST_JSON_ASSIGN_ERROR_CODE(ec, error::not_found, &loc);
+            BOOST_JSON_FAIL(ec, error::not_found);
             return nullptr;
         }
     }
