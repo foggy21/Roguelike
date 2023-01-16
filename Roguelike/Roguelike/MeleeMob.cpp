@@ -2,6 +2,7 @@
 #include "Knight.h"
 #include <ctime>
 #include <cmath>
+#include <iostream>
 
 MeleeMob::MeleeMob(const Position& position, const std::shared_ptr<sf::Sprite> sprite,
     const int& health, const int& damage) : GameObject(position, sprite, health, damage) {}
@@ -53,6 +54,7 @@ void MeleeMob::move(const Position& pos, std::vector<std::shared_ptr<GameObject>
     // Don't collide with object and targetPos - grass.
     if (!collided && map[targetPosition.y][targetPosition.x] == '.')
         position = targetPosition;
+    std::cout << "Monster Move\n";
 }
 
 bool MeleeMob::collide(GameObject& object) {

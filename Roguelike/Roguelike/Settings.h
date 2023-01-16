@@ -20,6 +20,7 @@ public:
         width = root.get<int>("width");
         height = root.get<int>("height");
         pathForMap = root.get<std::string>("pathForMap");
+        pathForFont = root.get<std::string>("pathForFont", "");
         sizeOfSprites = root.get<int>("sizeOfSprites");
         pathForTilemap = root.get<std::string>("pathForTilemap");
 
@@ -33,6 +34,7 @@ public:
     int height;
     std::string pathForMap;
     int sizeOfSprites;
+    std::string pathForFont;
     std::string pathForTilemap;
     std::map<std::string, char> entities;
 

@@ -1,20 +1,21 @@
 {
   "game": "Rougelike",
-  "width": 800,
-  "height": 600,
+  "width": 1240,
+  "height": 720,
 
   "sizeOfSprites": 16,
 
   "pathForTilemap": "../res/tile_set.png",
   "pathForMap": "../res/map.txt",
+  "pathForFont": "../res/font.ttf",
 
   "entities": {
     "grass": ".",
     "wall": "#",
     "knight": "K",
-    "monster": "M",
+    "mob": "M",
     "wizard": "W",
-    "heal": "+",
-    "sword": "!"
+    "health": "H",
+    "dagger": "D"
   }
 }

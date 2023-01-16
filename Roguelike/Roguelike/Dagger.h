@@ -1,6 +1,5 @@
 #pragma once
 #include "Thing.h"
-#include "Position.h"
 
 class Dagger : public Thing {
 public:

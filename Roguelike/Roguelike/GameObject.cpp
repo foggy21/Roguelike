@@ -1,6 +1,5 @@
 #include "GameObject.h"
 #include "Settings.h"
-#include "Position.h"
 
 const Position operator+(const Position& left, const Position& right) {
     return Position{ left.x + right.x, left.y + right.y };
@@ -37,4 +36,10 @@ void GameObject::changeDamage(const int& incSize) {
     damage += incSize;
 }
 
-//TODO: Render object
+void GameObject::render(sf::RenderWindow& window) {
+    Settings& settings = Settings::Instance();
+    sprite->setPosition(sf::Vector2f(position.x * settings.sizeOfSprites,
+        position.y * settings.sizeOfSprites));
+
+    window.draw(*sprite);
+}

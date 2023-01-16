@@ -1,6 +1,7 @@
 #include "Wizard.h"
 #include "Knight.h"
 #include <cmath>
+#include <iostream>
 
 Wizard::Wizard(const Position& position, const std::shared_ptr<sf::Sprite> sprite, const int& health, const int& damage) : GameObject(position, sprite, health, damage), currentTimeShoot(0) {}
 
@@ -31,7 +32,7 @@ void Wizard::move(const Position& pos, std::vector<std::shared_ptr<GameObject>>&
         if (!collided && map[targetPosition.y][targetPosition.x] == '.')
             position = targetPosition;
     }
-    
+    std::cout << "Wizard Move\n";
 }
 
 void Wizard::shoot(const Position& pos, std::vector<std::shared_ptr<GameObject>>& objects, const std::vector<std::string> map) {
