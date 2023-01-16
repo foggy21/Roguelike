@@ -11,6 +11,7 @@ public:
     bool collide(Knight& knight) override;
     bool collide(MeleeMob& mob) override;
     bool collide(Wizard& wizard) override;
+    bool collide(ThrowingAxe& axe) override;
 private:
     // variables for shooting.
     int currentTimeShoot;

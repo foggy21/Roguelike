@@ -5,6 +5,7 @@
 class Knight;
 class MeleeMob;
 class Wizard;
+class ThrowingAxe;
 
 class GameObject {
 public:
@@ -22,6 +23,7 @@ public:
     virtual bool collide(Knight& knight) = 0;
     virtual bool collide(MeleeMob& mob) = 0;
     virtual bool collide(Wizard& magician) = 0;
+    virtual bool collide(ThrowingAxe& axe) = 0;
 protected:
     Position position;
     int health, maxHealth, damage;

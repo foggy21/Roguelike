@@ -22,4 +22,9 @@ bool Thing::collide(Wizard& wizatd) {
     return false;
 }
 
+bool Thing::collide(ThrowingAxe& axe) {
+    health = 0;
+    return true;
+}
+
 // Same that in H file.
