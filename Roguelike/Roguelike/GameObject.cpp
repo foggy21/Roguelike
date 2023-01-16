@@ -38,8 +38,6 @@ void GameObject::changeDamage(const int& incSize) {
 
 void GameObject::render(sf::RenderWindow& window) {
     Settings& settings = Settings::Instance();
-    sprite->setPosition(sf::Vector2f(position.x * settings.sizeOfSprites,
-        position.y * settings.sizeOfSprites));
-
+    sprite->setPosition(sf::Vector2f(position.x * settings.sizeOfSprites, position.y * settings.sizeOfSprites));
     window.draw(*sprite);
 }

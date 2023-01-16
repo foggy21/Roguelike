@@ -1,5 +1,6 @@
 #include "Knight.h"
 #include "MeleeMob.h"
+#include "ThrowingAxe.h"
 #include "Wizard.h"
 
 Knight::Knight(const Position& position, const std::shared_ptr<sf::Sprite> sprite, const int& health, const int& damage) : GameObject(position, sprite, health, damage) {}
@@ -44,4 +45,10 @@ bool Knight::collide(Wizard& wizard) {
 
 bool Knight::collide(Knight& knight) {
     return false;
+}
+
+bool Knight::collide(ThrowingAxe& axe) {
+    axe.hit(axe.getDamage());
+    health -= axe.getDamage();
+    return true;
 }

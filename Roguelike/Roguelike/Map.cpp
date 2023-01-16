@@ -5,6 +5,7 @@
 #include "Wizard.h"
 #include "HealthPotion.h"
 #include "Dagger.h"
+#include "ThrowingAxe.h"
 #include <fstream>
 
 Map::Map(const std::string& mapFile) {
@@ -27,6 +28,10 @@ Map::Map(const std::string& mapFile) {
 
     wall = std::make_shared<sf::Sprite>(tileSet);
     wall->setTextureRect(sf::IntRect(68, 50, settings.sizeOfSprites, settings.sizeOfSprites));
+
+    auto spriteAxe = std::make_shared<sf::Sprite>(tileSet);
+    spriteAxe->setTextureRect(sf::IntRect(48, 0, settings.sizeOfSprites, settings.sizeOfSprites));
+    ThrowingAxe::setSprite(spriteAxe);
 
     auto spriteKnight = std::make_shared<sf::Sprite>(tileSet);
     spriteKnight->setTextureRect(sf::IntRect(0, 138, settings.sizeOfSprites, settings.sizeOfSprites));

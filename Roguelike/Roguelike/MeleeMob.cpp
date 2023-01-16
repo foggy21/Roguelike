@@ -1,6 +1,6 @@
 #include "MeleeMob.h"
 #include "Knight.h"
-#include <ctime>
+#include "ThrowingAxe.h"
 #include <cmath>
 #include <iostream>
 
@@ -71,5 +71,11 @@ bool MeleeMob::collide(MeleeMob& mob) {
 }
 
 bool MeleeMob::collide(Wizard& wizard) {
+    return false;
+}
+
+bool MeleeMob::collide(ThrowingAxe& axe) {
+    axe.hit(axe.getHealth());
+    health -= axe.getDamage();
     return false;
 }

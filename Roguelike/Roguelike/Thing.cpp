@@ -26,5 +26,3 @@ bool Thing::collide(ThrowingAxe& axe) {
     health = 0;
     return true;
 }
-
-// Same that in H file.

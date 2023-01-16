@@ -26,7 +26,9 @@ public:
     virtual bool collide(ThrowingAxe& axe) = 0;
 protected:
     Position position;
-    int health, maxHealth, damage;
+    int health;
+    int maxHealth;
+    int damage;
 private:
     std::shared_ptr<sf::Sprite> sprite;
 };

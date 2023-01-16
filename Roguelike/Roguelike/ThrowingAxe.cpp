@@ -2,14 +2,15 @@
 #include "Knight.h"
 #include "MeleeMob.h"
 
+std::shared_ptr<sf::Sprite> ThrowingAxe::staticSprite;
+
 ThrowingAxe::ThrowingAxe(const Position& position, const int& damage, const int& move_x, const int& move_y) : GameObject(position, ThrowingAxe::staticSprite, 1, damage), move_x(move_x), move_y(move_y) {}
 
 void ThrowingAxe::setSprite(const std::shared_ptr<sf::Sprite> sprite) {
-    staticSprite = sprite;
+    ThrowingAxe::staticSprite = sprite;
 }
 
-void ThrowingAxe::move(const Position& offset, std::vector<std::shared_ptr<GameObject>>& entities,
-    const std::vector<std::string> map)
+void ThrowingAxe::move(const Position& offset, std::vector<std::shared_ptr<GameObject>>& entities, const std::vector<std::string> map)
 {
     Position targetPosition = position + Position{ move_x, move_y };
     bool collided = false;

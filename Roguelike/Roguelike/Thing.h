@@ -11,6 +11,4 @@ public:
     bool collide(MeleeMob& mob) override;
     bool collide(Wizard& wizard) override;
     bool collide(ThrowingAxe& axe) override;
-private:
-    std::shared_ptr<sf::Sprite> staticSprite;
 };
