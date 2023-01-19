@@ -53,7 +53,7 @@ bool ThrowingDagger::collide(ThrowingDagger& dagger) {
     health = 0;
     return false;
 }
-bool ThrowingDagger::collide(ThrowingAxe& dagger) {
+bool ThrowingDagger::collide(ThrowingAxe& axe) {
     health = 0;
     return false;
 }

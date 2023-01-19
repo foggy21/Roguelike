@@ -1,6 +1,7 @@
 #include "Wizard.h"
 #include "Knight.h"
 #include "ThrowingAxe.h"
+#include "ThrowingDagger.h"
 #include <cmath>
 #include <iostream>
 
@@ -77,5 +78,7 @@ bool Wizard::collide(ThrowingAxe& axe) {
 }
 
 bool Wizard::collide(ThrowingDagger& dagger) {
+    health -= dagger.getDamage();
+    dagger.hit(dagger.getHealth());
     return false;
 }

@@ -1,6 +1,7 @@
 #include "MeleeMob.h"
 #include "Knight.h"
 #include "ThrowingAxe.h"
+#include "ThrowingDagger.h"
 #include <cmath>
 #include <iostream>
 
@@ -78,5 +79,6 @@ bool MeleeMob::collide(ThrowingAxe& axe) {
 }
 
 bool MeleeMob::collide(ThrowingDagger& dagger) {
+    health -= dagger.getDamage();
     return false;
 }
