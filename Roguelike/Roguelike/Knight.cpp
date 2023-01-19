@@ -1,6 +1,7 @@
 #include "Knight.h"
 #include "MeleeMob.h"
 #include "ThrowingAxe.h"
+#include "ThrowingDagger.h"
 #include "Wizard.h"
 
 Knight::Knight(const Position& position, const std::shared_ptr<sf::Sprite> sprite, const int& health, const int& damage) : GameObject(position, sprite, health, damage) {}
@@ -29,6 +30,12 @@ void Knight::setHealth(int restoredHealth) {
     health = health > maxHealth ? maxHealth : health;
 }
 
+void Knight::throwDagger(std::vector<std::shared_ptr<GameObject>>& entities, const std::vector<std::string> map, const int& move_x, const int& move_y)
+{
+    entities.push_back(std::make_shared<ThrowingDagger>(position, 35, move_x, move_y));
+    entities.back()->move(Position{ move_x, move_y }, entities, map);
+}
+
 bool Knight::collide(GameObject& object) {
     return object.collide(*this);
 }
@@ -48,7 +55,10 @@ bool Knight::collide(Knight& knight) {
 }
 
 bool Knight::collide(ThrowingAxe& axe) {
-    axe.hit(axe.getDamage());
     health -= axe.getDamage();
     return true;
+}
+
+bool Knight::collide(ThrowingDagger& dagger) {
+    return false;
 }

@@ -11,4 +11,5 @@ public:
     bool collide(MeleeMob& mob) override;
     bool collide(Wizard& wizard) override;
     bool collide(ThrowingAxe& axe) override;
+    bool collide(ThrowingDagger& dagger) override;
 };

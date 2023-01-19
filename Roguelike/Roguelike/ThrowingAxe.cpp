@@ -39,7 +39,6 @@ bool ThrowingAxe::collide(Knight& knight) {
 }
 
 bool ThrowingAxe::collide(MeleeMob& mob) {
-    mob.hit(damage);
     health = 0;
     return false;
 }
@@ -48,7 +47,12 @@ bool ThrowingAxe::collide(Wizard& wizard) {
     return false;
 }
 
-bool ThrowingAxe::collide(ThrowingAxe& fireball) {
+bool ThrowingAxe::collide(ThrowingAxe& axe) {
+    health = 0;
+    return false;
+}
+
+bool ThrowingAxe::collide(ThrowingDagger& dagger) {
     health = 0;
     return false;
 }

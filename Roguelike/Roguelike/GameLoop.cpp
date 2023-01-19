@@ -72,6 +72,19 @@ WindowState GameLoop::startGame() {
             else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                 offset = Position{ 0, 1 };
                 isMove = true;
+            } else if (event.type == sf::Event::KeyReleased) {
+                if (event.key.code == sf::Keyboard::W) {
+                    player->throwDagger(entities, mapVector, 0, -1);
+                }
+                else if (event.key.code == sf::Keyboard::S) {
+                    player->throwDagger(entities, mapVector, 0, 1);
+                }
+                else if (event.key.code == sf::Keyboard::A) {
+                    player->throwDagger(entities, mapVector, -1, 0);
+                }
+                else if (event.key.code == sf::Keyboard::D) {
+                    player->throwDagger(entities, mapVector, 1, 0);
+                }
             }
 
             if (isMove) {

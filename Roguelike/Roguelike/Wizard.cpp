@@ -16,7 +16,6 @@ void Wizard::move(const Position& pos, std::vector<std::shared_ptr<GameObject>>&
     } else {
         Position offsets[] = { Position{1, 0}, Position{-1, 0}, Position{0, 1}, Position{0, -1} };
         // Randomize moving
-        srand(time(0));
         int index = rand() % 4;
         Position targetPosition = position + offsets[index];
 
@@ -74,7 +73,9 @@ bool Wizard::collide(Wizard& magician) {
 }
 
 bool Wizard::collide(ThrowingAxe& axe) {
-    axe.hit(axe.getHealth());
-    health -= axe.getDamage();
+    return false;
+}
+
+bool Wizard::collide(ThrowingDagger& dagger) {
     return false;
 }

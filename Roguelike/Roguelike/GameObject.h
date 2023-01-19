@@ -6,6 +6,7 @@ class Knight;
 class MeleeMob;
 class Wizard;
 class ThrowingAxe;
+class ThrowingDagger;
 
 class GameObject {
 public:
@@ -24,6 +25,7 @@ public:
     virtual bool collide(MeleeMob& mob) = 0;
     virtual bool collide(Wizard& magician) = 0;
     virtual bool collide(ThrowingAxe& axe) = 0;
+    virtual bool collide(ThrowingDagger& dagger) = 0;
 protected:
     Position position;
     int health;

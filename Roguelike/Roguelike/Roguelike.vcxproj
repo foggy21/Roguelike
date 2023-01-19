@@ -140,6 +140,7 @@
     <ClCompile Include="MeleeMob.cpp" />
     <ClCompile Include="Thing.cpp" />
     <ClCompile Include="ThrowingAxe.cpp" />
+    <ClCompile Include="ThrowingDagger.cpp" />
     <ClCompile Include="Wizard.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +155,7 @@
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Thing.h" />
     <ClInclude Include="ThrowingAxe.h" />
+    <ClInclude Include="ThrowingDagger.h" />
     <ClInclude Include="Wizard.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

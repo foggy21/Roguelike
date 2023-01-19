@@ -26,3 +26,8 @@ bool Thing::collide(ThrowingAxe& axe) {
     health = 0;
     return true;
 }
+
+bool Thing::collide(ThrowingDagger& dagger) {
+    health = 0;
+    return true;
+}

@@ -36,7 +36,6 @@ void MeleeMob::move(const Position& pos, std::vector<std::shared_ptr<GameObject>
     else {
         // Randomize moving.
         Position offsets[] = { Position{1, 0}, Position{-1, 0}, Position{0, 1}, Position{0, -1} };
-        srand(time(0));
         int index = rand() % 4;
         targetPosition = position + offsets[index];
     }
@@ -75,7 +74,9 @@ bool MeleeMob::collide(Wizard& wizard) {
 }
 
 bool MeleeMob::collide(ThrowingAxe& axe) {
-    axe.hit(axe.getHealth());
-    health -= axe.getDamage();
+    return false;
+}
+
+bool MeleeMob::collide(ThrowingDagger& dagger) {
     return false;
 }
